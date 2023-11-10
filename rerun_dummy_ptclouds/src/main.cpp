@@ -1,7 +1,7 @@
 // Dummy example of ptclouds logging with rerun
-// This sample code is a reprduction of a pretty extreme use case of stereo ptcloud comparison across a sequence
+// This sample code is a reproduction of a pretty extreme use case of stereo ptcloud comparison across a sequence
 // In our test rerun handled it very well and the RAM consumption was reasonable considering the amount of data
-// However the export into rrd lead to a burst in RAM usage (~6 times the amount used for the initial logging)
+// However the export into rrd led to a burst in RAM usage (a few times the amount used for the initial logging)
 
 
 #include <rerun.hpp>
@@ -10,7 +10,6 @@
 #include <random>
 #include <iostream>
 
-// Using std and sl namespaces
 using namespace std;
 using namespace rerun::demo;
 
@@ -32,6 +31,7 @@ void run_cam(const rerun::RecordingStream* rec, int idx) {
         /* zed.retrieveMeasure(point_cloud_cpu, MEASURE::XYZRGBA, MEM::CPU, res);
 
         sl::float4* p = point_cloud_cpu.getPtr<sl::float4>(sl::MEM::CPU);
+        // Ptcloud format is: {x, y, z, color (packed)}
 
         for (int k = 0; k < full_size; k++) {
             auto pt = p[k];
