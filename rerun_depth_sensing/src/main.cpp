@@ -97,7 +97,8 @@ int main(int argc, char **argv) {
             zed.retrieveMeasure(point_cloud_cpu, MEASURE::XYZRGBA, MEM::CPU, res);
 
             sl::float4* p = point_cloud_cpu.getPtr<sl::float4>(sl::MEM::CPU);
-
+            // Ptcloud format is: {x, y, z, color (packed)}
+            
             for (int k = 0; k < full_size; k++) {
                 auto pt = p[k];
                 ptcloud_positions[k] = rerun::Position3D(pt.x, pt.y, pt.z);
